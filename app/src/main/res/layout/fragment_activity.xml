@@ -5,20 +5,23 @@
     android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+    android:padding="15dp">
     <!-- Layout for fetchin current location -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
         >
+
         <TextView
-            android:text="Your Current Location"
+            android:id="@+id/TV_currAddress"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_weight="9"
-            android:id="@+id/TV_currAddress" />
+            android:text="Your Current Location" />
+
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -27,34 +30,53 @@
             android:background="@drawable/ic_curr_location"/>
     </LinearLayout>
     <!-- Spinner for displaying the Names -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Transport:"/>
-    <Spinner
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SP_names"
-        />
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Select Transport:"
+            android:layout_weight="4"/>
+
+        <Spinner
+            android:id="@+id/SP_names"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="6" />
+    </LinearLayout>
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mode of Transport:"/>
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/TV_carTransport"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/TV_trainTransport"/>
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/TV_carTransport"
+                android:layout_weight="5"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:id="@+id/TV_trainTransport"/>
+        </LinearLayout>
     </LinearLayout>
     <!-- Button to navigate to the location -->
     <Button
@@ -62,6 +84,8 @@
         android:layout_height="wrap_content"
         android:text="Navigate"
         android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="5dp"
         android:textColor="@color/colorTextIcons"
         android:background="@color/colorAccent"
         android:id="@+id/btn_Navigate"/>
