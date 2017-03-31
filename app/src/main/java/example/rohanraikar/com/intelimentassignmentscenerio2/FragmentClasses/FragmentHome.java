@@ -12,6 +12,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -54,6 +55,7 @@ public class FragmentHome extends Fragment {
     ImageButton btnGetLocation;
     DataHandler dh;
     String msg=null;
+    Bundle bundle;
     JSONArray jArray;
     ArrayList<String> names;
     ArrayList<DataHandler> serverData;
@@ -61,6 +63,7 @@ public class FragmentHome extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_activity,container,false);
+        bundle=new Bundle();
         //Download data from the server
         new DownloadJSON().execute();
         names=new ArrayList<String>();
@@ -90,6 +93,12 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 //Navigate to the map activity
+                Fragment mapFragment = new FragmentMap();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmentHolder, mapFragment);
+                mapFragment.setArguments(bundle);
+                transaction.addToBackStack(null);
+                transaction.commit();
 
             }
         });
@@ -212,6 +221,15 @@ public class FragmentHome extends Fragment {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                         JSONObject trasportDetails=serverData.get(position).getTranportationDetails();
+                        JSONObject location=serverData.get(position).getLocations();
+                        //Getting data to pass to the Map activity
+                        try {
+                            bundle.putString("latitude",location.getString("latitude").toString());
+                            bundle.putString("longitude",location.getString("longitude").toString());
+                            Log.d("Rohan","Location :"+location.getString("latitude").toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         try {
                             if (trasportDetails.has("car")) {
                                 tvCarTransport.setText("Car -"+trasportDetails.getString("car").toString());
