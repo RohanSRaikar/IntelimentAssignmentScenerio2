@@ -107,7 +107,7 @@ public class FragmentHome extends Fragment {
 
 
     private void getMyLocation() {
-        Location location = myService.getLocation(LocationManager.GPS_PROVIDER);
+        Location location = myService.getLocation();
         if (location != null){
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
@@ -226,6 +226,9 @@ public class FragmentHome extends Fragment {
                         try {
                             bundle.putString("latitude",location.getString("latitude").toString());
                             bundle.putString("longitude",location.getString("longitude").toString());
+                            bundle.putString("carTransport",trasportDetails.getString("car").toString());
+                            bundle.putString("trainTransport",trasportDetails.getString("train").toString());
+                            bundle.putString("cityName",serverData.get(position).getName());
                             Log.d("Rohan","Location :"+location.getString("latitude").toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
