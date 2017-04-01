@@ -93,7 +93,7 @@ public class FragmentMap extends Fragment {
                 googleMap.setMyLocationEnabled(true);
                 // For dropping a marker at a point on the Map
                 LatLng destLocation = new LatLng(latitude, longitude);
-                googleMap.addMarker(new MarkerOptions().position(destLocation).title(cityName).snippet(carTransport+","+trainTransport));
+                googleMap.addMarker(new MarkerOptions().position(destLocation).title(cityName).snippet("Car - "+carTransport+", Train - "+trainTransport));
                 // For zooming automatically to the location of the marker
                 CameraPosition cameraPosition = new CameraPosition.Builder().target(destLocation).zoom(12).build();
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
