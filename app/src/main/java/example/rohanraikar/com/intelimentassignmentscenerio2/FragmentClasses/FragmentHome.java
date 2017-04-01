@@ -1,7 +1,9 @@
 package example.rohanraikar.com.intelimentassignmentscenerio2.FragmentClasses;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -38,6 +40,7 @@ import example.rohanraikar.com.intelimentassignmentscenerio2.BackgroundServices.
 import example.rohanraikar.com.intelimentassignmentscenerio2.BackgroundServices.JSONParser;
 import example.rohanraikar.com.intelimentassignmentscenerio2.BackgroundServices.LocationAddress;
 import example.rohanraikar.com.intelimentassignmentscenerio2.BackgroundServices.LocationServiceClass;
+import example.rohanraikar.com.intelimentassignmentscenerio2.MainActivity;
 import example.rohanraikar.com.intelimentassignmentscenerio2.R;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -58,12 +61,16 @@ public class FragmentHome extends Fragment {
     Bundle bundle;
     JSONArray jArray;
     ArrayList<String> names;
+    View v;
+    Context context;
     ArrayList<DataHandler> serverData;
     Spinner loadData;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_activity,container,false);
+        v = inflater.inflate(R.layout.fragment_activity,container,false);
         bundle=new Bundle();
+        context=getActivity();
+        setRetainInstance(true);
         //Download data from the server
         new DownloadJSON().execute();
         names=new ArrayList<String>();
@@ -193,6 +200,7 @@ public class FragmentHome extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
+            names=new ArrayList<String>();
             serverData=new ArrayList<DataHandler>();
             jArray = JSONParser.getJSONfromURL("http://express-it.optusnet.com.au/sample.json");
             Log.d("Rohan","Length Received Json object" + jArray.length());
@@ -214,8 +222,12 @@ public class FragmentHome extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+                loadData=(Spinner)v.findViewById(R.id.SP_names);
+            Log.d("Rohan","value of name : "+names);
+            Log.d("Rohan","value of spinner :"+loadData );
+            Log.d("Rohan","Value of activity :"+context);
 
-                loadData.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,names));
+                loadData.setAdapter(new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,names));
                 loadData.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -263,4 +275,6 @@ public class FragmentHome extends Fragment {
                 });
         }
     }
+
+
 }

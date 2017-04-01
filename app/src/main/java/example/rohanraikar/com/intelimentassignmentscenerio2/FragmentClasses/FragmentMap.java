@@ -58,7 +58,7 @@ public class FragmentMap extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_map_activity, container, false);
         trackMe=new LocationServiceClass(getActivity());
-
+        setRetainInstance(true);
         latitude=Double.valueOf(getArguments().getString("latitude"));
         longitude=Double.valueOf(getArguments().getString("longitude"));
 

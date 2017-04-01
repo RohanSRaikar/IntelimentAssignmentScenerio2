@@ -36,7 +36,6 @@ public class JSONParser {
             URLConnection jc = ur.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(jc.getInputStream()));
             line=convertStreamToString(reader);
-            Log.d("Rohan","recevived String:"+line);
             jArray=new JSONArray(line);
         } catch (MalformedURLException e) {
             e.printStackTrace();
