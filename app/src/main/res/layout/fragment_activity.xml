@@ -2,8 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#ffffff"
     android:layout_width="match_parent"
+    android:background="@drawable/potrait_background"
     android:layout_height="match_parent"
     android:padding="15dp"
     android:gravity="center">
@@ -19,6 +19,7 @@
             android:id="@+id/TV_currAddress"
             android:layout_width="0dp"
             android:layout_height="80dp"
+            android:textColor="@color/colorTextIcons"
             android:layout_weight="9"
             android:text="Your Current Location" />
 
@@ -38,6 +39,7 @@
         android:layout_marginBottom="5dp">
         <TextView
             android:layout_width="0dp"
+            android:textColor="@color/colorTextIcons"
             android:layout_height="wrap_content"
             android:text="Select Transport:"
             android:layout_weight="4"/>
@@ -45,6 +47,7 @@
         <Spinner
             android:id="@+id/SP_names"
             android:layout_width="0dp"
+            android:textColor="@color/colorTextIcons"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -60,6 +63,7 @@
         android:layout_marginBottom="5dp">
         <TextView
             android:layout_width="wrap_content"
+            android:textColor="@color/colorTextIcons"
             android:layout_height="wrap_content"
             android:text="Mode of Transport:"/>
         <LinearLayout
@@ -70,11 +74,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/TV_carTransport"
+                android:textColor="@color/colorTextIcons"
                 android:layout_weight="5"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorTextIcons"
                 android:id="@+id/TV_trainTransport"/>
         </LinearLayout>
     </LinearLayout>
